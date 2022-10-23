@@ -5,7 +5,6 @@ import {Box, Button} from "@mui/material";
 import axios from "axios";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {styled} from "@mui/system";
-import {FUNCTION_BASE_URL} from "../../lib/configs";
 
 const TimeDisplayDiv = styled("div")({
   marginTop: "-10px",
@@ -27,13 +26,7 @@ export default function Dashboard() {
   };
   const fetchData = async () => {
     try {
-      const url = `https://weather-dashboard-zzhikai.vercel.app/api/weather`;
-      console.log("url of fetchdata is", url);
-      const result = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const result = await axios.get("/api/weather");
       if (result.status !== 200 || result.status !== 201) {
         throw new Error("Failed!");
       }
