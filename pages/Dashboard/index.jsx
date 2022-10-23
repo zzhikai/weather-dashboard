@@ -14,7 +14,7 @@ const TimeDisplayDiv = styled("div")({
   flexDirection: "row",
 });
 
-export const Dashboard = () => {
+export default function Dashboard() {
   const [data, setData] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -91,4 +91,4 @@ export const Dashboard = () => {
       <DataDisplay data={data} />
     </Box>
   );
-};
+}
