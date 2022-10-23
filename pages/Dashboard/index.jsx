@@ -29,7 +29,11 @@ export default function Dashboard() {
     try {
       const url = `https://weather-dashboard-zzhikai.vercel.app/api/weather`;
       console.log("url of fetchdata is", url);
-      const result = await axios.get(url);
+      const result = await axios.get(url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (result.status !== 200 || result.status !== 201) {
         throw new Error("Failed!");
       }
