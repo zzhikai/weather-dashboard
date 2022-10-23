@@ -4,9 +4,3 @@ const nextConfig = {
   swcMinify: true,
 };
 module.exports = nextConfig;
-
-module.export = {
-  env: {
-    DEPLOYMENT_URL: "https://api-weather-kappa.vercel.app/",
-  },
-};

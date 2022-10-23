@@ -15,7 +15,7 @@ const TimeDisplayDiv = styled("div")({
 });
 
 export default function Dashboard() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -27,15 +27,19 @@ export default function Dashboard() {
   const fetchData = async () => {
     try {
       const result = await axios.get("/api/weather");
-      if (result.status !== 200 || result.status !== 201) {
-        throw new Error("Failed!");
+      console.log(result);
+      if (result.status !== 200 && result.status !== 201) {
+        throw new Error("Failed to fetch data");
       }
       const body = result.data;
-      setData(body.areaForecast);
-      const startDateString = moment(body.period.start).format(
+      console.log(result);
+      console.log(result.data.areaForecast);
+      await setData(result.data.areaForecast);
+      // console.log("data is: ", data);
+      const startDateString = moment(result.data.period.start).format(
         "(DD-MM-YY) HH:mm:ss"
       );
-      const endDateString = moment(body.period.end).format(
+      const endDateString = moment(result.data.period.end).format(
         "(DD-MM-YY) HH:mm:ss"
       );
       setStartDate(startDateString);
