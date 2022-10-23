@@ -50,6 +50,6 @@ export const areas = [
 ];
 
 // Have the data that API queries these locations
-export default async function getAreas(req, res) {
+export default async function handler(req, res) {
   return res.status(200).json(areas);
 }

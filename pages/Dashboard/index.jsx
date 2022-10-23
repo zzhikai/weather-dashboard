@@ -3,9 +3,7 @@ import moment from "moment";
 import DataDisplay from "../../components/DataDisplay";
 import {Box, Button} from "@mui/material";
 import axios from "axios";
-import LoadingButton from "@mui/lab/LoadingButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import debounce from "@mui/material";
 import {styled} from "@mui/system";
 
 const TimeDisplayDiv = styled("div")({
@@ -35,7 +33,6 @@ export const Dashboard = () => {
     const result = await axios.get("http://localhost:3000/api/weather", {
       headers: {"Content-Type": "application/json"},
     });
-    console.log(result.data);
     const body = result.data;
     setData(body.areaForecast);
     const startDateString = moment(body.period.start).format(
@@ -44,7 +41,6 @@ export const Dashboard = () => {
     const endDateString = moment(body.period.end).format("(DD-MM-YY) HH:mm:ss");
     setStartDate(startDateString);
     setEndDate(endDateString);
-    console.log("dates are: ", startDate, endDate);
   };
 
   const [areas, setAreas] = useState([]);
