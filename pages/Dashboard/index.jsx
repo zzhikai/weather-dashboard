@@ -5,6 +5,7 @@ import {Box, Button} from "@mui/material";
 import axios from "axios";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {styled} from "@mui/system";
+import {FUNCTION_BASE_URL} from "../../lib/configs";
 
 const TimeDisplayDiv = styled("div")({
   marginTop: "-10px",
@@ -18,44 +19,47 @@ export default function Dashboard() {
   const [data, setData] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleRefresh = async () => {
-    setLoading(true);
-    // await  () => debounce(fetchData, 500);
     setTimeout(() => {
       fetchData();
     }, 5000);
-    // await fetchData();
-    setLoading(false);
   };
   const fetchData = async () => {
-    const result = await axios.get("http://localhost:3000/api/weather", {
-      headers: {"Content-Type": "application/json"},
-    });
-    const body = result.data;
-    setData(body.areaForecast);
-    const startDateString = moment(body.period.start).format(
-      "(DD-MM-YY) HH:mm:ss"
-    );
-    const endDateString = moment(body.period.end).format("(DD-MM-YY) HH:mm:ss");
-    setStartDate(startDateString);
-    setEndDate(endDateString);
+    try {
+      const url = `https://weather-dashboard-zzhikai.vercel.app/api/weather`;
+      console.log("url of fetchdata is", url);
+      const result = await axios.get(url);
+      if (result.status !== 200 || result.status !== 201) {
+        throw new Error("Failed!");
+      }
+      const body = result.data;
+      setData(body.areaForecast);
+      const startDateString = moment(body.period.start).format(
+        "(DD-MM-YY) HH:mm:ss"
+      );
+      const endDateString = moment(body.period.end).format(
+        "(DD-MM-YY) HH:mm:ss"
+      );
+      setStartDate(startDateString);
+      setEndDate(endDateString);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const [areas, setAreas] = useState([]);
-  const fetchAreas = async () => {
-    const result = await axios.get("http://localhost:3000/api/areas", {
-      headers: {"Content-Type": "application/json"},
-    });
-    const areasData = result.data;
-    setAreas(areasData);
-  };
+  // const [areas, setAreas] = useState([]);
+  // const fetchAreas = async () => {
+  //   const result = await axios.get(`${FUNCTION_BASE_URL}/api/areas`, {
+  //     headers: {"Content-Type": "application/json"},
+  //   });
+  //   const areasData = result.data;
+  //   setAreas(areasData);
+  // };
 
   useEffect(() => {
     fetchData();
-    fetchAreas();
-    setLoading(false);
+    // fetchAreas();
   }, []);
 
   return (
@@ -67,7 +71,7 @@ export default function Dashboard() {
         sx={{
           color: "grey",
           backgroundColor: "white",
-          borderRadius: "5px",
+          borderRadius: "'5px",
           ":hover": {
             color: "black",
             backgroundColor: "white",
