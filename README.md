@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Description
+An interactive dashboard showing weather forecast for different areas in Singapore based on https://data.gov.sg/dataset/weather-forecast API
+
+
 ## Getting Started
 
 First, run the development server:
