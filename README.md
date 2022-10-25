@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Description
 An interactive dashboard showing weather forecast for different areas in Singapore based on https://data.gov.sg/dataset/weather-forecast API
-
+Done for CS3219 OTOT Task B3 & B4
 
 ## Getting Started
 
