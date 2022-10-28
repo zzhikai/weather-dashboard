@@ -5,6 +5,7 @@ import {Box, Button} from "@mui/material";
 import axios from "axios";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {styled} from "@mui/system";
+import NavBar from "../../components/NavBar";
 
 const TimeDisplayDiv = styled("div")({
   marginTop: "-10px",
@@ -31,11 +32,9 @@ export default function Dashboard() {
       if (result.status !== 200 && result.status !== 201) {
         throw new Error("Failed to fetch data");
       }
-      const body = result.data;
       console.log(result);
       console.log(result.data.areaForecast);
-      await setData(result.data.areaForecast);
-      // console.log("data is: ", data);
+      setData(result.data.areaForecast);
       const startDateString = moment(result.data.period.start).format(
         "(DD-MM-YY) HH:mm:ss"
       );
@@ -65,6 +64,7 @@ export default function Dashboard() {
 
   return (
     <Box sx={{p: "1%"}}>
+      <NavBar />
       <Button
         startIcon={<RefreshIcon />}
         variant="contained"

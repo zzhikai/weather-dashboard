@@ -122,6 +122,4 @@ export default function DataDisplay(props) {
       </List>
     </div>
   );
-
-  // return <VirtualizedList data={data} />;
 }
