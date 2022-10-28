@@ -102,8 +102,8 @@ export default function ContactFormDialog() {
         <DialogTitle>Create Contact</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To add a new contact, please enter the contact's name, email, and
-            phone number
+            To add a new contact, please enter the contact information: name,
+            email, and phone number
           </DialogContentText>
           <TextField
             autoFocus

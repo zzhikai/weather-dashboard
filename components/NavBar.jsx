@@ -2,7 +2,8 @@ import * as React from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Box, Tabs, Tab} from "@mui/material";
-
+import Dashboard from "../pages/Dashboard";
+import Contacts from "../pages/Contacts";
 export default function NavBar() {
   const [value, setValue] = React.useState();
 
